@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"os"
 	"strings"
-	"syscall"
 
 	"github.com/ArtalkJS/Artalk/internal/core"
 	"github.com/ArtalkJS/Artalk/internal/entity"
@@ -15,7 +14,6 @@ import (
 	"github.com/ArtalkJS/Artalk/internal/utils"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"golang.org/x/term"
 )
 
 var adminCmd = &cobra.Command{
@@ -89,14 +87,14 @@ func credentials() (string, string, string, error) {
 	}
 
 	fmt.Print(i18n.T("Enter {{name}}", map[string]interface{}{"name": i18n.T("Password")}) + ": ")
-	bytePassword, err := term.ReadPassword(int(syscall.Stdin))
+	bytePassword, err := reader.ReadString('\n')
 	if err != nil {
 		return "", "", "", err
 	}
 
 	fmt.Println()
 	fmt.Print(i18n.T("Retype {{name}}", map[string]interface{}{"name": i18n.T("Password")}) + ": ")
-	byteRePassword, err := term.ReadPassword(int(syscall.Stdin))
+	byteRePassword, err := reader.ReadString('\n')
 	if err != nil {
 		return "", "", "", err
 	}
