@@ -42,7 +42,9 @@ COPY scripts/docker-artalk-runner.sh /usr/bin/artalk
 RUN chmod +x /usr/bin/artalk \
     && ln -s /usr/bin/artalk /usr/bin/artalk-go
 
-VOLUME ["/data"]
+# Since Railway banned VOLUME, we move the data to /usr/data
+# VOLUME ["/data"]
+RUN mkdir -p /usr/data
 
 COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

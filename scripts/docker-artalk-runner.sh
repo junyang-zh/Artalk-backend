@@ -1,6 +1,6 @@
 #!/bin/bash
-if [ -e /data/artalk.yml ]; then
-    /artalk -w / -c /data/artalk.yml "$@"
+if [ -e /usr/data/artalk.yml ]; then
+    /artalk -w / -c /usr/data/artalk.yml "$@"
 else
-    /artalk -w / -c /data/artalk-go.yml "$@"
+    /artalk -w / -c /usr/data/artalk-go.yml "$@"
 fi
