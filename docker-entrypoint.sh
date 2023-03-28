@@ -20,6 +20,8 @@ if [ "$1" != 'gen' ] && ( [ ! -e /usr/data/artalk.yml ] && [ ! -e /usr/data/arta
         artalk gen conf /usr/data/artalk.yml
         echo "$(date) [info] Generate new config file to '/usr/data/artalk.yml'"
     fi
+    # Add an admin
+    printf "$ADMIN_USERNAME\n$ADMIN_EMAIL\n$ADMIN_PASSWORD\n$ADMIN_PASSWORD\n" | artalk admin
 fi
 
 # Run Artalk
